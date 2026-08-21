@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/* ==========================================================
+   concept.css — コンセプトページ固有
+   レイアウトと部品は book.css を参照
+
+   ■ イラストを紙面の背景に敷く考え方
+   イラストは 1536x1024（横 3 : 縦 2）の横長。本のページは縦長なので、
+   cover で切り抜くと構図が崩れる。そこで
+     ・幅いっぱい（100% auto）で紙面の下端に置く
+     ・本文がある上側は白を強く、見せたい下側は薄く覆う（--veil）
+     ・イラストのぶんだけ下の余白を空ける（--scene-space）
+
+   --scene-space は「紙面の幅に対する下余白の比率」。
+   イラストの高さは必ず紙面の幅 x 0.667 になるので、
+     0.667 … 本文がイラストにまったく重ならない
+     0.46  … イラストの上のほう（余白の多い部分）に本文が重なる
+   イラストの構図に合わせて各ページで指定する。
+   ※ padding-bottom の % は親要素の幅が基準になってしまうため、
+     紙面の幅 var(--book-width) から計算している。
+   ========================================================== */
+
+.concept-scene {
+  padding-bottom: calc(var(--book-width) * var(--scene-space));
+  background-repeat: no-repeat;
+  /* 1層目=背表紙, 2層目=白い覆い, 3層目=イラスト */
+  background-position: left top, center, center bottom;
+  background-size: auto, 100% 100%, 100% auto;
+
+  --spine: linear-gradient(
+    90deg,
+    var(--ink) 0 36px,
+    rgba(255, 255, 255, 0.82) 36px 52px,
+    transparent 52px
+  );
+  --veil: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.88) 38%,
+    rgba(255, 255, 255, 0.62) 72%,
+    rgba(255, 255, 255, 0.46) 100%
+  );
+}
+
+/* 上半分が空白のイラストなので、本文を少し重ねる */
+.concept-why {
+  --scene-space: 0.46;
+  background-image:
+    var(--spine),
+    var(--veil),
+    url(../images/concept/bg_concept01.png);
+}
+
+/* 画面全体に絵が入っているイラストなので、本文は重ねない */
+.concept-aim {
+  --scene-space: 0.68;
+  background-image:
+    var(--spine),
+    var(--veil),
+    url(../images/concept/bg_concept02.png);
+}

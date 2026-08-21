@@ -1,0 +1,285 @@
+@charset "utf-8";
+
+/* ==========================================================
+   member.css — ABOUT US ページ固有
+   レイアウトと部品は book.css を参照
+   ========================================================== */
+
+/* ==========================================================
+   1. 背景の写真スライドショー
+
+   栞（サイドバー）を除いたページ全体に敷く。
+   position: fixed なので、スクロールしても写真は動かず、
+   本のページだけが上を流れていく。
+   ========================================================== */
+
+/* 方眼の机はやめて、写真を地にする */
+.main {
+  background-image: none;
+  background-color: #dedede;
+}
+
+.member-bg {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.member-bg-slide {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0;
+  animation: member-bg-crossfade 24s linear infinite;
+}
+
+.member-bg-slide-01 {
+  background-image: url(../images/member/bg-main.JPG);
+}
+
+.member-bg-slide-02 {
+  background-image: url(../images/member/bg-main-01.jpg);
+  animation-delay: -18s;
+}
+
+.member-bg-slide-03 {
+  background-image: url(../images/member/bg-main-02.jpg);
+  animation-delay: -12s;
+}
+
+.member-bg-slide-04 {
+  background-image: url(../images/member/bg-main-03.jpg);
+  animation-delay: -6s;
+}
+
+/* 写真の上に白をかぶせて、本のページの文字を読みやすくする */
+.member-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.62));
+}
+
+@keyframes member-bg-crossfade {
+  0%,
+  20% {
+    opacity: 1;
+  }
+
+  25%,
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-bg-slide {
+    animation: none;
+  }
+
+  .member-bg-slide-01 {
+    opacity: 1;
+  }
+}
+
+/* 本のページは必ず写真より前面に置く */
+.main > .first-view,
+.main > .book-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================
+   2. 表紙
+   ========================================================== */
+
+.first-view {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 28px 24px 0;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas: "cover";
+  place-items: end center;
+}
+
+/* .book-page から表紙用に上書き。
+   紙を薄くして、背後の写真を透かして見せる（背表紙だけは残す） */
+.member-cover {
+  grid-area: cover;
+  height: calc(100vh - 28px);
+  height: calc(100svh - 28px);
+  min-height: 620px;
+  margin: 0;
+  padding: 86px 64px 62px 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.34);
+  background-image: linear-gradient(
+    90deg,
+    var(--ink) 0 36px,
+    rgba(255, 255, 255, 0.82) 36px 52px,
+    transparent 52px
+  );
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: auto;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow:
+    12px 10px 0 var(--shade),
+    28px 32px 46px rgba(0, 0, 0, 0.32);
+}
+
+.member-cover::before {
+  left: 62px;
+}
+
+.member-cover-title {
+  font-size: 44px;
+  line-height: 1.4;
+  font-weight: 900;
+}
+
+/* ==========================================================
+   2. メンバー一覧
+   ========================================================== */
+
+.member-list {
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 44px 30px;
+}
+
+.member-card {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.member-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.16);
+}
+
+.member-card img {
+  display: block;
+  width: 100%;
+}
+
+.member-card dl {
+  margin-top: 18px;
+}
+
+.member-card dt {
+  padding-bottom: 10px;
+  font-size: 19px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--ink);
+}
+
+.member-card dd {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* 専門分野を黒帯のラベルで示す */
+.member-card .major {
+  width: fit-content;
+  margin-top: 16px;
+  padding: 6px 10px;
+  color: var(--paper);
+  background-color: var(--ink);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+/* ==========================================================
+   3. レスポンシブ（book.css と同じ 900 → 520 → 700 の順）
+   ========================================================== */
+
+@media (max-width: 900px) {
+  .first-view {
+    padding: 28px 20px 0;
+  }
+
+  .member-cover {
+    height: calc(100vh - 28px);
+    height: calc(100svh - 28px);
+    min-height: 560px;
+    padding: 42px 38px 52px 68px;
+  }
+
+  .member-cover-title {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 520px) {
+  .first-view {
+    padding: 24px 16px 0;
+  }
+
+  .member-cover {
+    height: calc(100vh - 24px);
+    height: calc(100svh - 24px);
+    min-height: 480px;
+    padding: 30px 24px 42px 54px;
+  }
+
+  .member-cover::before {
+    left: 42px;
+  }
+
+  .member-cover-title {
+    font-size: 25px;
+  }
+
+  .member-list {
+    margin-top: 30px;
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+@media (max-width: 700px) {
+  .first-view {
+    padding: 22px 10px 0;
+  }
+
+  .member-cover {
+    height: calc(100vh - 22px);
+    height: calc(100svh - 22px);
+    min-height: 480px;
+    padding: 26px 14px 40px 38px;
+    box-shadow:
+      8px 8px 0 var(--shade),
+      18px 24px 34px rgba(0, 0, 0, 0.28);
+  }
+
+  .member-cover::before {
+    left: 30px;
+  }
+
+  .member-cover-title {
+    font-size: 21px;
+  }
+
+  .member-list {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

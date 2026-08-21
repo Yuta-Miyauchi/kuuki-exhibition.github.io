@@ -1,0 +1,322 @@
+@charset "utf-8";
+
+/* ==========================================================
+   info.css — INFO ページ固有（会場 / SNS / お問い合わせ）
+   レイアウトと部品は book.css を参照
+   ========================================================== */
+
+/* ==========================================================
+   1. ページ先頭の目次
+   ========================================================== */
+
+.info-index {
+  margin-top: 34px;
+  display: grid;
+  gap: 18px;
+}
+
+.info-index a {
+  padding: 20px 24px;
+  display: grid;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.82);
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.14);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.info-index a:hover {
+  transform: translateY(-6px);
+  box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.16);
+}
+
+.info-index-label {
+  width: fit-content;
+  padding: 5px 10px;
+  color: var(--paper);
+  background-color: var(--ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.info-index strong {
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.info-index strong::after {
+  content: ' →';
+}
+
+.info-index em {
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+/* ==========================================================
+   2. 地図
+      標本カードの中に貼り込む。data-tag のラベルが上辺に載るので、
+      その分の余白を上に確保しておく。
+   ========================================================== */
+
+.access-map {
+  margin-top: 34px;
+  padding: 22px 12px 12px;
+}
+
+.access-map iframe {
+  display: block;
+  width: 100%;
+  height: 440px;
+  border: 0;
+}
+
+/* ==========================================================
+   3. 補足（駐車場の案内・編集メモなど）
+   ========================================================== */
+
+.access-note {
+  margin-top: 22px;
+  padding-left: 14px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(0, 0, 0, 0.66);
+  border-left: 3px solid rgba(0, 0, 0, 0.28);
+}
+
+/* ==========================================================
+   4. SNS
+   ========================================================== */
+
+.sns-list {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.sns-card {
+  height: 100%;
+  padding: 22px 24px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  background-color: rgba(255, 255, 255, 0.82);
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.14);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.sns-card-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.sns-card-handle {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.sns-card-state {
+  width: fit-content;
+  margin-top: 4px;
+  padding: 4px 10px;
+  color: var(--paper);
+  background-color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* アカウント開設前は破線にして、押せないことを見た目でも示す */
+.sns-card.is-preparing {
+  border-style: dashed;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* リンクになったカードだけ反応させる */
+a.sns-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.16);
+}
+
+/* ==========================================================
+   5. お問い合わせフォーム
+   ========================================================== */
+
+.form-notice {
+  margin-top: 26px;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  background-color: rgba(255, 255, 255, 0.72);
+  border: 2px dashed var(--ink);
+}
+
+.form-notice strong {
+  display: block;
+}
+
+.contact-form {
+  margin-top: 28px;
+  display: grid;
+  gap: 22px;
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+}
+
+.form-row label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.form-required {
+  padding: 3px 8px;
+  color: var(--paper);
+  background-color: var(--ink);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.6;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.86);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  appearance: none;
+}
+
+.form-row textarea {
+  resize: vertical;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.form-row input:disabled,
+.form-row select:disabled,
+.form-row textarea:disabled {
+  color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.05);
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+/* .stamp-link を button に流用しているので、ボタン既定の見た目を消す */
+.form-submit {
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-submit:disabled {
+  background-color: rgba(0, 0, 0, 0.45);
+  border-color: rgba(0, 0, 0, 0.45);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.form-submit:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================
+   6. レスポンシブ（book.css と同じ 900 → 520 → 700 の順）
+   ========================================================== */
+
+@media (max-width: 900px) {
+  .access-map iframe {
+    height: 360px;
+  }
+}
+
+@media (max-width: 520px) {
+  .info-index {
+    margin-top: 26px;
+  }
+
+  .info-index a {
+    padding: 16px 18px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.14);
+  }
+
+  .info-index strong {
+    font-size: 16px;
+  }
+
+  .info-index em {
+    font-size: 13px;
+  }
+
+  .access-map {
+    margin-top: 26px;
+    padding: 20px 8px 8px;
+  }
+
+  .access-map iframe {
+    height: 280px;
+  }
+
+  .access-note {
+    font-size: 13px;
+  }
+
+  .sns-list {
+    margin-top: 26px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .sns-card {
+    padding: 18px 20px;
+  }
+
+  .sns-card-name {
+    font-size: 18px;
+  }
+
+  .contact-form {
+    gap: 18px;
+  }
+
+  .form-notice {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 700px) {
+  .access-map iframe {
+    height: 240px;
+  }
+
+  .sns-list {
+    grid-template-columns: 1fr;
+  }
+}

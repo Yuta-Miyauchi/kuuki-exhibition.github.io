@@ -1,0 +1,821 @@
+@charset "utf-8";
+
+/* ==========================================================
+   index.css — トップページ固有のスタイル
+
+   ファーストビューは告知ポスターの再現。
+   下のリード文・開催情報は book.css の「本のページ」のまま。
+
+   ■ 構成の考え方
+   表紙は book.css の .book-page（黒枠・背表紙・小口・影）をそのまま使い、
+   その紙面の中身だけを告知ポスターの版面にしている。
+   本のページの高さは画面によって変わるので、
+     - タイトルと下段（会期・会場）は縦方向のフレックスで組む
+     - 色面と写真だけを紙面の四隅に絶対配置する
+     - 文字サイズと円は cqw（1cqw = 紙面の幅の 1%）で紙面に追従させる
+   色面の位置を微調整したいときは各 .art-* / .poster-photo-* の数値を触る。
+   ========================================================== */
+
+/* ポスターの配色（吹き出しなど表紙の外でも使うので .main に置く） */
+.main {
+  --p-ink: #141414;
+  --p-pink: #f9509f;
+  --p-pink-soft: #ffa6c9;
+  --p-teal: #74d0c0;
+  --p-yellow: #ffe94f;
+  --p-purple: #6a4fd0;
+  --p-paper: #fdfcef;
+  --p-grid-major: #eed44c;
+  --p-grid-minor: #f1eac6;
+}
+
+/* ==========================================================
+   1. 表紙のページ（.book-page の紙面を方眼紙に置き換える）
+   ========================================================== */
+
+.first-view {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 28px 24px 0;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas: "cover";
+  place-items: end center;
+}
+
+.poster-page {
+  grid-area: cover;
+  height: calc(100vh - 28px);
+  height: calc(100svh - 28px);
+  min-height: 640px;
+  margin: 0;
+  /* 本のページより余白を詰めて、紙面を広く使う（左は背表紙の逃げ） */
+  padding: 44px 36px 44px 72px;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  color: var(--p-ink);
+  background-color: var(--p-paper);
+  /* 背表紙のみ。方眼は .poster-art 側に描く
+     （コンテナクエリ単位 cqw は自分自身のコンテナを参照できないため） */
+  background-image:
+    linear-gradient(90deg, var(--ink) 0 36px, rgba(255, 255, 255, 0.82) 36px 52px, transparent 52px);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: auto;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow:
+    12px 10px 0 var(--shade),
+    28px 32px 46px rgba(0, 0, 0, 0.32);
+}
+
+/* 表紙は左余白が広いので折り目の位置をずらす */
+.poster-page::before {
+  left: 56px;
+}
+
+/* 紙面の内側に引くピンクの破線（背表紙には掛からない） */
+.poster-frame {
+  position: absolute;
+  top: 2.4cqw;
+  right: 2.4cqw;
+  bottom: 2.4cqw;
+  left: calc(52px + 2.4cqw);
+  z-index: 2;
+  border: 0.32cqw dashed var(--p-pink);
+  pointer-events: none;
+}
+
+/* ==========================================================
+   2. 装飾（色面と写真）
+
+   ■ 写真の入れ方
+   写真が用意できたら images/index/ に置き、
+   下の --photo-01 〜 --photo-04 のコメントを外してファイル名を書く。
+   指定がない間は薄い色面のプレースホルダが表示される。
+   ========================================================== */
+
+.poster-art {
+  position: absolute;
+  /* 背表紙（左 52px）を隠さないように内側から始める */
+  inset: 0 0 0 52px;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 0 7px 7px 0;
+  pointer-events: none;
+  /* 方眼紙（太い罫線1本に細い罫線5本） */
+  background-image:
+    linear-gradient(to right, var(--p-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--p-grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--p-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--p-grid-minor) 1px, transparent 1px);
+  background-size:
+    8cqw 8cqw,
+    8cqw 8cqw,
+    1.6cqw 1.6cqw,
+    1.6cqw 1.6cqw;
+
+  /* --photo-01: url(../images/index/poster_photo_01.jpg); */
+  /* --photo-02: url(../images/index/poster_photo_02.jpg); */
+  /* --photo-03: url(../images/index/poster_photo_03.jpg); */
+  /* --photo-04: url(../images/index/poster_photo_04.jpg); */
+}
+
+.poster-art span {
+  position: absolute;
+  display: block;
+}
+
+/* --- 上段 --- */
+
+.art-yellow-bar {
+  left: 20%;
+  top: 1%;
+  width: 11%;
+  height: 12%;
+  background-color: var(--p-yellow);
+}
+
+/* 天で切れた半円をふたつ並べる */
+.art-pink-half {
+  left: 33%;
+  top: -3%;
+  width: 8cqw;
+  height: 16cqw;
+  border-radius: 999px 0 0 999px;
+  background-color: var(--p-pink);
+}
+
+.art-teal-half {
+  left: 41%;
+  top: -3%;
+  width: 8cqw;
+  height: 16cqw;
+  border-radius: 0 999px 999px 0;
+  background-color: var(--p-teal);
+}
+
+/* 紫の線だけの長方形 */
+.art-purple-frame {
+  left: 40%;
+  top: 0.6%;
+  width: 15%;
+  height: 18%;
+  border: 0.5cqw solid var(--p-purple);
+}
+
+/* --- 中段 --- */
+
+.art-yellow-quarter {
+  left: 1.5%;
+  top: 29%;
+  width: 21cqw;
+  height: 21cqw;
+  border-radius: 0 0 999px 0;
+  background-color: var(--p-yellow);
+}
+
+.art-teal-bump {
+  right: 2%;
+  top: 25.5%;
+  width: 17cqw;
+  height: 8.5cqw;
+  border-radius: 999px 999px 0 0;
+  background-color: var(--p-teal);
+}
+
+.art-stripe {
+  right: 2%;
+  top: 33%;
+  width: 22%;
+  height: 10%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--p-pink) 0 2.1cqw,
+    #ffffff 2.1cqw 4.2cqw
+  );
+}
+
+.art-dots {
+  right: 2%;
+  top: 47%;
+  width: 20%;
+  height: 11%;
+  background-color: var(--p-purple);
+  background-image: radial-gradient(circle, #ffffff 21%, transparent 22%);
+  background-size: 3.4cqw 3.4cqw;
+}
+
+/* --- 写真スロット --- */
+
+.poster-photo {
+  background-color: rgba(0, 0, 0, 0.07);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* 写真が未指定のあいだは枠と番号を出しておく */
+.poster-photo::after {
+  content: attr(data-slot);
+  position: absolute;
+  left: 0.8cqw;
+  bottom: 0.6cqw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5cqw;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.poster-photo-01 {
+  left: 2%;
+  top: 3%;
+  width: 28%;
+  height: 17%;
+  border-radius: 50% 44% 50% 44%;
+  background-image: var(--photo-01, none);
+}
+
+.poster-photo-02 {
+  right: 2%;
+  top: 2%;
+  width: 33%;
+  height: 21%;
+  border-radius: 1.4cqw;
+  background-color: rgba(106, 79, 208, 0.22);
+  background-image: var(--photo-02, none);
+}
+
+.poster-photo-03 {
+  left: 2%;
+  top: 44%;
+  width: 27%;
+  height: 19%;
+  border-radius: 50% 44% 50% 44%;
+  background-image: var(--photo-03, none);
+}
+
+.poster-photo-04 {
+  right: 2%;
+  top: 58%;
+  width: 30%;
+  height: 11%;
+  border-radius: 1.4cqw;
+  background-image: var(--photo-04, none);
+}
+
+/* ==========================================================
+   3. タイトル
+   ========================================================== */
+
+/* 余った縦方向の中央に置く */
+.poster-title {
+  margin: auto 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.poster-title-small {
+  display: block;
+  margin-bottom: 1.8cqw;
+  font-size: 4.2cqw;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+}
+
+.poster-title-main {
+  display: grid;
+  gap: 1.2cqw;
+  font-size: 22cqw;
+  line-height: 0.9;
+  font-weight: 900;
+}
+
+.poster-title-main span {
+  display: block;
+  letter-spacing: 0.04em;
+  text-indent: 0.04em;
+}
+
+/* ==========================================================
+   4. 会期（ピンクの円）
+   ========================================================== */
+
+/* 会期の円と会場情報を紙面の下段に並べる */
+.poster-bottom {
+  display: flex;
+  align-items: center;
+  gap: 4cqw;
+}
+
+.poster-date {
+  flex: 0 0 auto;
+  width: 32cqw;
+  height: 32cqw;
+  padding-bottom: 1cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4cqw;
+  border-radius: 50%;
+  background-color: var(--p-pink-soft);
+}
+
+.poster-date-year {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.4cqw;
+  line-height: 1;
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
+}
+
+/* 円の中に収まる上限は約 6.6cqw。フォント差で溢れないよう余裕をとる */
+.poster-date-day {
+  font-size: 6.2cqw;
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.poster-date-day small {
+  font-size: 0.42em;
+  font-weight: bold;
+}
+
+.poster-date-arrow {
+  font-size: 2.4cqw;
+  line-height: 1;
+}
+
+.poster-date-free {
+  margin-top: 0.8cqw;
+  font-size: 3.4cqw;
+  line-height: 1;
+  font-weight: bold;
+}
+
+/* ==========================================================
+   5. 会場・主催の情報（紙面の下段・右）
+
+   印刷ポスターでは 6pt 相当の細字だが、画面では 4〜8px になり
+   読めないため、紙面の中でも px 指定の本文として組んでいる。
+   ========================================================== */
+
+.poster-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.poster-info-en {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.poster-info-venue {
+  margin-top: 5px;
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.poster-info-address {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.poster-info a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.poster-info a:hover {
+  opacity: 0.6;
+}
+
+/* ==========================================================
+   6. 次回開催のお知らせ（upcoming-event.js が出し入れする）
+      会場情報の先頭に貼った付箋
+   ========================================================== */
+
+.upcoming-event {
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 14px;
+  padding: 8px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow-wrap: anywhere;
+  color: #ffffff;
+  background-color: var(--p-ink);
+  box-shadow: 5px 5px 0 var(--p-pink-soft);
+  transform: rotate(-1.5deg);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.upcoming-event[hidden] {
+  display: none;
+}
+
+.upcoming-event-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  line-height: 1.3;
+  color: var(--p-pink-soft);
+}
+
+.upcoming-event-title {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.upcoming-event-countdown {
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.upcoming-event:hover {
+  transform: rotate(-1.5deg) translateY(-4px);
+  box-shadow: 8px 9px 0 var(--p-pink-soft);
+}
+
+/* ==========================================================
+   7. リード文のページ（book.css の .book-page を継承）
+   ========================================================== */
+
+.lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-shadow: none;
+}
+
+.lead-text {
+  width: 100%;
+}
+
+.lead h3 {
+  line-height: 2;
+  text-align: left;
+  margin-top: 18px;
+}
+
+.lead h3:first-child {
+  margin-top: 0;
+}
+
+/* ==========================================================
+   8. 開催情報のページ
+   ========================================================== */
+
+/* 既定は1カラム（吹き出しは本文の下）。
+   横幅に余裕がある画面だけ2カラムにして、吹き出しを右へ回す。 */
+.info {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 26px;
+  box-shadow:
+    12px 10px 0 var(--shade),
+    28px 32px 46px rgba(0, 0, 0, 0.24);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.info-text {
+  width: min(100%, 470px);
+}
+
+/* キャラクターを紙面右側に敷く。
+   メディアクエリ側で位置を調整できるよう、ID ではなくクラスで指定すること。
+   吹き出しを紙面の外へはみ出させるので overflow は切らない。 */
+.event-final {
+  background-repeat: no-repeat;
+  background-position: left top, center, right -42px center, center;
+  background-size: auto, 100% 100%, auto 138%, cover;
+  background-image:
+    linear-gradient(90deg, var(--ink) 0 36px, rgba(255, 255, 255, 0.82) 36px 52px, transparent 52px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.86) 58%, rgba(255, 255, 255, 0.72) 78%, rgba(255, 255, 255, 0.28) 100%),
+    url(../images/index/image_character.png),
+    url(../images/index/bg_index.png);
+}
+
+/* スクロール連動の演出は行わず、影だけ一定に保つ */
+.js-scroll-reveal .info {
+  opacity: 1;
+  transform: translateY(0);
+  transition: box-shadow 300ms ease;
+}
+
+.js-scroll-reveal .info.is-visible,
+.js-scroll-reveal .info.is-visible:hover,
+.info:hover {
+  transform: translateY(0);
+  box-shadow:
+    12px 10px 0 var(--shade),
+    28px 32px 46px rgba(0, 0, 0, 0.24);
+}
+
+/* ==========================================================
+   9. サブの告知（まちかね祭）— ワニ博士の吹き出し
+      メインの中之島センターより軽い扱いにしている
+   ========================================================== */
+
+.sub-event {
+  display: flex;
+  align-items: flex-end;
+  /* しっぽ（22px）が吹き出しとワニ博士の間を埋めるので、
+     すきまは取らずワニ博士を少し重ねる */
+  gap: 0;
+}
+
+.sub-event-balloon {
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+  padding: 20px 22px 18px;
+  background-color: #ffffff;
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.14);
+}
+
+/* 吹き出しのしっぽ。枠線ぶんだけ大きい三角を重ねて縁取りに見せる */
+.sub-event-balloon::before,
+.sub-event-balloon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.sub-event-balloon::before {
+  margin-top: -14px;
+  border-width: 14px 0 14px 22px;
+  border-left-color: var(--ink);
+}
+
+.sub-event-balloon::after {
+  margin-top: -9px;
+  margin-left: -4px;
+  border-width: 9px 0 9px 15px;
+  border-left-color: #ffffff;
+}
+
+.sub-event-shout {
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  color: #ffffff;
+  background-color: var(--p-pink);
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: bold;
+  transform: rotate(-2deg);
+}
+
+.sub-event-title {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* 吹き出しは幅が狭いので、定義リストを詰めた組にする */
+.sub-event-balloon .spec-list {
+  margin-top: 14px;
+  gap: 8px;
+}
+
+.sub-event-balloon .spec-list div {
+  grid-template-columns: 52px minmax(0, 1fr);
+}
+
+.sub-event-balloon .spec-list dt {
+  padding: 5px 6px;
+  font-size: 12px;
+}
+
+.sub-event-balloon .spec-list dd {
+  padding: 5px 0 5px 10px;
+  font-size: 13px;
+}
+
+.sub-event-balloon .text-link {
+  margin-top: 14px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.sub-event-character {
+  flex: 0 0 auto;
+  width: 34%;
+  min-width: 76px;
+  max-width: 132px;
+  margin-left: -8px;
+}
+
+/* ==========================================================
+   10. レスポンシブ（book.css と同じ 900 → 520 → 700 の順）
+
+   表紙の中身は cqw なので紙面に追従して縮む。
+   ここでは紙面の余白と、下段のページだけを調整する。
+   ========================================================== */
+
+@media (max-width: 900px) {
+  .poster-page {
+    height: calc(100vh - 28px);
+    height: calc(100svh - 28px);
+    min-height: 600px;
+    padding: 38px 26px 38px 68px;
+  }
+
+  .info {
+    min-height: 560px;
+    background-position: left top, center, right -70px bottom, center;
+    background-size: auto, 100% 100%, auto 116%, cover;
+  }
+
+  .sub-event-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .first-view {
+    padding: 24px 16px 0;
+  }
+
+  .poster-page {
+    height: calc(100vh - 24px);
+    height: calc(100svh - 24px);
+    min-height: 560px;
+    padding: 26px 14px 26px 44px;
+  }
+
+  /* 円と会場情報を横に並べる幅がないので縦積みにする */
+  .poster-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4cqw;
+  }
+
+  .poster-date {
+    width: 42cqw;
+    height: 42cqw;
+  }
+
+  .poster-info-venue {
+    font-size: 17px;
+  }
+
+  .lead h3 {
+    font-size: 15px;
+  }
+
+  .info {
+    min-height: 520px;
+    background-position: left top, center, right -92px bottom, center;
+    background-size: auto, 100% 100%, auto 98%, cover;
+  }
+}
+
+@media (max-width: 700px) {
+  .first-view {
+    padding: 22px 10px 0;
+  }
+
+  /* 細い画面では背表紙が紙面を圧迫するので、背表紙自体を細くする */
+  .poster-page {
+    height: calc(100vh - 22px);
+    height: calc(100svh - 22px);
+    min-height: 540px;
+    padding: 22px 12px 22px 42px;
+    background-image:
+      linear-gradient(90deg, var(--ink) 0 22px, rgba(255, 255, 255, 0.82) 22px 32px, transparent 32px);
+    box-shadow:
+      8px 8px 0 var(--shade),
+      18px 24px 34px rgba(0, 0, 0, 0.28);
+  }
+
+  .poster-page::before {
+    left: 34px;
+  }
+
+  .poster-art {
+    inset: 0 0 0 32px;
+  }
+
+  .poster-frame {
+    left: calc(32px + 2.4cqw);
+  }
+
+  /* 紙面が小さいぶんタイトルの比率を上げて存在感を保つ */
+  .poster-title-main {
+    font-size: 26cqw;
+  }
+
+  .info {
+    min-height: 500px;
+    background-position: left top, center, right -70px bottom, center;
+    background-size: auto, 100% 100%, auto 82%, cover;
+  }
+
+  .info-text {
+    width: 100%;
+  }
+
+  /* 吹き出しはワニ博士を下に置き、しっぽを下向きにする */
+  .sub-event {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .sub-event-balloon::before,
+  .sub-event-balloon::after {
+    top: 100%;
+    left: 22%;
+  }
+
+  .sub-event-balloon::before {
+    margin-top: 0;
+    margin-left: -14px;
+    border-width: 22px 14px 0 14px;
+    border-left-color: transparent;
+    border-top-color: var(--ink);
+  }
+
+  .sub-event-balloon::after {
+    margin-top: -4px;
+    margin-left: -9px;
+    border-width: 15px 9px 0 9px;
+    border-left-color: transparent;
+    border-top-color: #ffffff;
+  }
+
+  .sub-event-character {
+    width: 46%;
+    max-width: 150px;
+    margin-top: 12px;
+    align-self: center;
+  }
+}
+
+/* ==========================================================
+   11. 広い画面だけ、吹き出しをメインの紙面の右へ回して
+       紙面の外まではみ出させる（はみ出し量は紙面の左右の余白より
+       小さくすること。超えると横スクロールが出る）
+   ========================================================== */
+
+/* margin-right のうち紙面の右パディング（64px）ぶんは紙面の内側で
+   消費されるので、実際のはみ出し量は「指定値 − 67px」になる */
+@media (min-width: 1200px) {
+  .info {
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 34%);
+  }
+
+  .sub-event {
+    align-self: center;
+    margin-right: -157px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .info {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 38%);
+  }
+
+  .sub-event {
+    margin-right: -247px;
+  }
+}
+
+/* 縦長の画面（タブレット縦・スマホ）では、画面高いっぱいだと
+   紙面が細長くなりすぎるので、高さを画面幅から決める */
+@media (max-aspect-ratio: 3 / 4) {
+  /* ページが画面より低くなるので、机の高さもページに合わせる
+     （そうしないとページの上に空白が残る） */
+  .first-view {
+    min-height: 0;
+    padding-bottom: 24px;
+  }
+
+  .poster-page {
+    height: auto;
+    min-height: min(calc(100svh - 28px), 90vw);
+  }
+}
