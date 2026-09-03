@@ -5,6 +5,55 @@
    レイアウトと部品は book.css を参照
    ========================================================== */
 
+.info-book {
+  --spread-paper: #fdfcef;
+  --spread-grid: #f1eac6;
+}
+
+.info-cover {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 28px 24px 0;
+  display: grid;
+  place-items: end center;
+}
+
+.info-cover-page {
+  min-height: max(640px, calc(100svh - 28px));
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-book {
+  padding-top: 132px;
+}
+
+#venue-nakanoshima,
+#sns,
+#contact {
+  scroll-margin-top: 28px;
+}
+
+.info-book .book-heading {
+  font-size: 28px;
+}
+
+.venue-page .book-heading {
+  font-size: 23px;
+}
+
+@media (min-width: 901px) {
+  .venue-page .spec-list-wide div {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .venue-page .spec-list dd {
+    font-size: 18px;
+  }
+}
+
 /* ==========================================================
    1. ページ先頭の目次
    ========================================================== */
@@ -54,6 +103,7 @@
   font-style: normal;
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.62);
+  overflow-wrap: anywhere;
 }
 
 /* ==========================================================
@@ -70,7 +120,7 @@
 .access-map iframe {
   display: block;
   width: 100%;
-  height: 440px;
+  height: 320px;
   border: 0;
 }
 
@@ -121,6 +171,7 @@
   font-size: 14px;
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.62);
+  overflow-wrap: anywhere;
 }
 
 .sns-card-state {
@@ -128,7 +179,7 @@
   margin-top: 4px;
   padding: 4px 10px;
   color: var(--paper);
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: var(--ink);
   font-size: 12px;
   line-height: 1;
 }
@@ -252,12 +303,24 @@ a.sns-card:hover {
    ========================================================== */
 
 @media (max-width: 900px) {
+  .info-cover {
+    padding-top: 72px;
+  }
+
+  .info-cover-page {
+    min-height: auto;
+  }
+
   .access-map iframe {
     height: 360px;
   }
 }
 
 @media (max-width: 520px) {
+  .info-cover {
+    padding: 58px 16px 0;
+  }
+
   .info-index {
     margin-top: 26px;
   }
@@ -312,6 +375,14 @@ a.sns-card:hover {
 }
 
 @media (max-width: 700px) {
+  .info-book .book-heading {
+    font-size: 23px;
+  }
+
+  .venue-page .book-heading {
+    font-size: 21px;
+  }
+
   .access-map iframe {
     height: 240px;
   }

@@ -4,7 +4,7 @@
    concept.css — コンセプトページ固有
    レイアウトと部品は book.css を参照
 
-   ■ イラストを紙面の背景に敷く考え方
+   ■ イラストを見開き紙面の背景に敷く考え方
    イラストは 1536x1024（横 3 : 縦 2）の横長。本のページは縦長なので、
    cover で切り抜くと構図が崩れる。そこで
      ・幅いっぱい（100% auto）で紙面の下端に置く
@@ -20,19 +20,21 @@
      紙面の幅 var(--book-width) から計算している。
    ========================================================== */
 
+.concept-book {
+  --spread-paper: #fdfcef;
+  --spread-grid: #f1eac6;
+  --concept-pink: #f9509f;
+  --concept-purple: #4e3ec4;
+  --concept-teal: #74d0c0;
+}
+
 .concept-scene {
   padding-bottom: calc(var(--book-width) * var(--scene-space));
   background-repeat: no-repeat;
-  /* 1層目=背表紙, 2層目=白い覆い, 3層目=イラスト */
-  background-position: left top, center, center bottom;
-  background-size: auto, 100% 100%, 100% auto;
+  /* 1層目=白い覆い, 2層目=イラスト */
+  background-position: center, center bottom;
+  background-size: 100% 100%, 100% auto;
 
-  --spine: linear-gradient(
-    90deg,
-    var(--ink) 0 36px,
-    rgba(255, 255, 255, 0.82) 36px 52px,
-    transparent 52px
-  );
   --veil: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.92) 0%,
@@ -46,7 +48,6 @@
 .concept-why {
   --scene-space: 0.46;
   background-image:
-    var(--spine),
     var(--veil),
     url(../images/concept/bg_concept01.png);
 }
@@ -55,7 +56,155 @@
 .concept-aim {
   --scene-space: 0.68;
   background-image:
-    var(--spine),
     var(--veil),
     url(../images/concept/bg_concept02.png);
+}
+
+/* ==========================================================
+   2. 体験MAP
+   添付ポスター上部の会場MAPを、見開き紙面用に圧縮したコラージュ。
+   ========================================================== */
+
+.concept-map {
+  min-height: 470px;
+  margin-top: 26px;
+  position: relative;
+  isolation: isolate;
+}
+
+.concept-map::before {
+  content: "";
+  position: absolute;
+  inset: 28px 0 8px;
+  z-index: -2;
+  background-color: rgba(255, 255, 255, 0.68);
+  background-image:
+    linear-gradient(to right, rgba(241, 220, 92, 0.46) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(241, 220, 92, 0.46) 1px, transparent 1px);
+  background-size: 15px 15px;
+  border: 2px dashed var(--concept-purple);
+}
+
+.concept-map::after {
+  content: "";
+  position: absolute;
+  top: 170px;
+  right: 8px;
+  left: 8px;
+  z-index: -1;
+  height: 4px;
+  background-color: var(--concept-teal);
+  box-shadow:
+    0 174px 0 var(--concept-pink),
+    0 224px 0 rgba(78, 62, 196, 0.72);
+  transform: rotate(-2deg);
+  transform-origin: center;
+}
+
+.concept-map-label {
+  width: fit-content;
+  margin: 0;
+  padding: 7px 12px;
+  position: absolute;
+  top: 0;
+  left: 16px;
+  z-index: 8;
+  color: var(--paper);
+  background-color: var(--ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.concept-map-flow {
+  width: 76%;
+  margin: 138px auto 0;
+  position: relative;
+  z-index: 2;
+  display: block;
+  filter: drop-shadow(6px 8px 0 rgba(0, 0, 0, 0.14));
+}
+
+.concept-map-card {
+  position: absolute;
+  z-index: 3;
+  display: block;
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  background-color: #ffffff;
+  box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.18);
+}
+
+.concept-map-card-message {
+  top: 56px;
+  left: 2%;
+  width: 17%;
+  aspect-ratio: 3 / 4;
+  object-position: 22% 8%;
+  transform: rotate(-2.5deg);
+}
+
+.concept-map-card-change {
+  right: 5%;
+  bottom: 18px;
+  width: 48%;
+  aspect-ratio: 3.8 / 1;
+  object-position: center center;
+  transform: rotate(1.5deg);
+}
+
+.concept-map-card-birth {
+  top: 50px;
+  right: 2%;
+  width: 18%;
+  aspect-ratio: 1;
+  object-position: 50% 14%;
+  transform: rotate(2deg);
+}
+
+@media (max-width: 1100px) {
+  .concept-map {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 700px) {
+  .concept-map {
+    min-height: 500px;
+    margin-top: 28px;
+  }
+
+  .concept-map::before {
+    inset: 14px -2px 8px;
+  }
+
+  .concept-map::after {
+    top: 178px;
+    right: 0;
+    left: 0;
+  }
+
+  .concept-map-flow {
+    width: 90%;
+    margin-top: 152px;
+  }
+
+  .concept-map-card-message {
+    top: 58px;
+    left: 0;
+    width: 25%;
+  }
+
+  .concept-map-card-birth {
+    top: 58px;
+    right: 0;
+    width: 27%;
+  }
+
+  .concept-map-card-change {
+    right: 2%;
+    bottom: 20px;
+    width: 76%;
+  }
 }

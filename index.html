@@ -5,12 +5,13 @@
     <head>
         <meta charset = "UTF-8">
         <title> あなたとつくる空気図鑑-トップページ-</title>
-        <meta name = "description" content = "グループ型企画支援『「空気」を観る体験の創造』で開催する展示会「あなたとつくる空気図鑑」告知用HPのトップページです。2026年11月14日〜15日、大阪大学中之島センター4F展示室1・2にて入場無料で開催します。">
+        <meta name = "description" content = "グループ型企画支援『「空気」を観る体験の創造』で開催する展示会「あなたとつくる空気図鑑」告知用HPのトップページです。2026年11月14日10:00〜18:00、15日10:00〜16:00、大阪大学中之島センター4F展示室1・2にて入場無料で開催します。">
         <meta name = "viewport" content = "width=device-width">
         <script src = "./js/scroll-reveal.js"></script>
         <script src = "./js/upcoming-event.js" defer></script>
         <link href = "./css/common.css" rel = "stylesheet">
         <link href = "./css/book.css" rel = "stylesheet">
+        <link href = "./css/concept.css" rel = "stylesheet">
         <link href = "./css/index.css" rel = "stylesheet">
         <link rel = "preconnect" href = "https://fonts.googleapis.com">
         <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
@@ -26,122 +27,257 @@
                 <div class = "header-menu">
                     <nav class = "menu">
                         <ul>
-                            <li><a href = "./concept.html">CONCEPT</a></li>
-                            <li><a href = "./member.html">ABOUT US</a></li>
-                            <li><a href = "./info.html">INFO</a></li>
+                            <li><a href = "#exhibition">EXHIBITION</a></li>
+                            <li><a href = "#prologue">PROLOGUE</a></li>
+                            <li><a href = "#concept">CONCEPT</a></li>
+                            <li><a href = "#about">ABOUT US</a></li>
+                            <li><a href = "./info.html">INFORMATION</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-        <main class = "main">
+        <main class = "main has-open-book">
             <!-- 表紙。本のページの形は保ったまま、中身を告知ポスターの版面にしている -->
             <div class = "first-view">
                 <div class = "book-page poster-page">
-                    <div class = "poster-frame" aria-hidden = "true"></div>
                     <div class = "poster-art" aria-hidden = "true">
-                        <span class = "art-yellow-bar"></span>
-                        <span class = "art-pink-half"></span>
-                        <span class = "art-teal-half"></span>
-                        <span class = "art-purple-frame"></span>
-                        <span class = "art-yellow-quarter"></span>
-                        <span class = "art-teal-bump"></span>
-                        <span class = "art-stripe"></span>
-                        <span class = "art-dots"></span>
-                        <span class = "poster-photo poster-photo-01" data-slot = "PHOTO 01"></span>
-                        <span class = "poster-photo poster-photo-02" data-slot = "PHOTO 02"></span>
-                        <span class = "poster-photo poster-photo-03" data-slot = "PHOTO 03"></span>
-                        <span class = "poster-photo poster-photo-04" data-slot = "PHOTO 04"></span>
+                        <span class = "poster-shape shape-top-stripe"></span>
+                        <span class = "poster-shape shape-top-yellow"></span>
+                        <span class = "poster-shape shape-top-pink"></span>
+                        <span class = "poster-shape shape-top-teal"></span>
+                        <span class = "poster-shape shape-top-purple"></span>
+                        <span class = "poster-shape shape-left-purple"></span>
+                        <span class = "poster-shape shape-left-teal"></span>
+                        <span class = "poster-shape shape-left-yellow"></span>
+                        <span class = "poster-shape shape-right-dots"></span>
+                        <span class = "poster-shape shape-bottom-stripe"></span>
+                        <span class = "poster-shape shape-bottom-teal"></span>
+                        <figure class = "poster-figure figure-crowd">
+                            <img src = "./images/index/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3.png" alt = "">
+                        </figure>
+                        <figure class = "poster-figure figure-raised-hands">
+                            <img src = "./images/index/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (1).png" alt = "">
+                        </figure>
+                        <figure class = "poster-figure figure-stairs">
+                            <img src = "./images/index/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (2).png" alt = "">
+                        </figure>
+                        <figure class = "poster-figure figure-phone">
+                            <img src = "./images/index/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (3).png" alt = "">
+                        </figure>
+                        <figure class = "poster-figure figure-sign">
+                            <img src = "./images/index/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (4).png" alt = "">
+                        </figure>
+                        <figure class = "poster-figure figure-line">
+                            <img src = "./images/index/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (5).png" alt = "">
+                        </figure>
                     </div>
                     <h1 class = "poster-title">
                         <span class = "poster-title-small">あなたとつくる</span>
                         <span class = "poster-title-main">
-                            <span>空気</span>
-                            <span>図鑑</span>
+                            <span>空</span>
+                            <span>気</span>
+                            <span>図</span>
+                            <span>鑑</span>
                         </span>
                     </h1>
                     <div class = "poster-bottom">
+                        <div class = "upcoming-event" hidden>
+                            <span class = "upcoming-event-label">NEXT EVENT</span>
+                            <strong class = "upcoming-event-title"></strong>
+                            <span class = "upcoming-event-countdown"></span>
+                        </div>
                         <div class = "poster-date">
                             <span class = "poster-date-year">2026</span>
                             <span class = "poster-date-day">11/14<small>（土）</small></span>
+                            <span class = "poster-date-time">10:00-18:00</span>
                             <span class = "poster-date-arrow" aria-hidden = "true">▼</span>
                             <span class = "poster-date-day">11/15<small>（日）</small></span>
+                            <span class = "poster-date-time">10:00-16:00</span>
                             <span class = "poster-date-free">《入場無料》</span>
                         </div>
                         <div class = "poster-info">
-                            <div class = "upcoming-event" hidden>
-                                <span class = "upcoming-event-label">NEXT EVENT</span>
-                                <strong class = "upcoming-event-title"></strong>
-                                <span class = "upcoming-event-countdown"></span>
-                            </div>
                             <p class = "poster-info-en">THE UNIVERSITY OF OSAKA NAKANOSHIMA CENTER</p>
                             <p class = "poster-info-venue">大阪大学中之島センター<br>4F展示室1・2</p>
                             <p class = "poster-info-address">〒530-0005 大阪府大阪市北区中之島4丁目3-53</p>
+                            <p class = "poster-info-url">https://www.onc.osaka-u.ac.jp/</p>
+                            <p class = "poster-info-host">主催：大阪大学超域イノベーション博士課程プログラム<br>
+                                2026年度グループ型企画支援『「空気」を観る体験の創造』<br>
+                                共催：大阪大学中之島芸術センター</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class = "book-page lead">
-                <div class = "lead-text">
-                    <h3>学校の授業で先生が「分かる人手を挙げて」と言ったとき</h3>
-                    <h3>満員電車の車内にご高齢の方が乗ってきたとき</h3>
-                    <h3>「本当はこうするべきなのに...!」と思っていながらできないことってありませんか？<br>
-                        あなたとつくる空気図鑑はそんなあなたの葛藤に寄り添うそんな展示会です</h3>
-                </div>
-                <a class = "stamp-link" href = "./concept.html">
-                    <span>CONCEPT</span>
-                    <strong>あなたとつくる空気図鑑について詳しく見る</strong>
-                </a>
-            </div>
-            <!-- メインの告知。data-primary が付いた回をカウントダウンの対象にする -->
-            <div class = "book-page info event-final" id = "event-final" data-primary
-                 data-event-name = "あなたとつくる空気図鑑" data-start-date = "2026-11-14" data-end-date = "2026-11-15">
-                <div class = "book-card info-text" data-tag = "AIR ATLAS">
-                    <p class = "page-label">MAIN EXHIBITION</p>
-                    <h2 class = "book-heading">あなたとつくる空気図鑑</h2>
-                    <dl class = "spec-list">
-                        <div>
-                            <dt>日時</dt>
-                            <dd>2026年11月14日（土）〜15日（日）</dd>
+            <section class = "open-book-sequence integrated-book concept-book" aria-label = "展示会の概要">
+                <!-- メインの告知。data-primary が付いた回をカウントダウンの対象にする -->
+                <article class = "book-spread event-spread" id = "exhibition">
+                    <div class = "spread-page spread-page-left event-main-page" id = "event-final" data-primary
+                         data-event-name = "あなたとつくる空気図鑑" data-start-date = "2026-11-14" data-end-date = "2026-11-15">
+                        <div class = "book-card info-text" data-tag = "EXHIBITION">
+                            <p class = "page-label"><strong>TITLE</strong></p>
+                            <h2 class = "book-heading">あなたとつくる空気図鑑</h2>
+                            <dl class = "spec-list">
+                                <div>
+                                    <dt>DATE</dt>
+                                    <dd><span class = "date-label">2026年<br>11月14日（土）</span><span class = "date-time">10:00〜18:00</span><br>
+                                        <span class = "date-label">11月15日（日）</span><span class = "date-time">10:00〜16:00</span></dd>
+                                </div>
+                                <div>
+                                    <dt>PLACE</dt>
+                                    <dd>大阪大学中之島センター 4F展示室1・2</dd>
+                                </div>
+                                <div>
+                                    <dt>FARE</dt>
+                                    <dd>入場無料</dd>
+                                </div>
+                            </dl>
+                            <a class = "stamp-link" href = "./info.html#venue-nakanoshima">
+                                <span>INFORMATION</span>
+                                <strong>会場へのアクセスを見る</strong>
+                            </a>
                         </div>
-                        <div>
-                            <dt>会場</dt>
-                            <dd>大阪大学中之島センター 4F展示室1・2</dd>
+                    </div>
+                    <!-- サブの告知。メインの次のページに、ワニ博士の吹き出しとして配置する -->
+                    <div class = "spread-page spread-page-right event-sub-page" id = "event-second"
+                         data-event-name = "ワニ博士！「空気」について教えて！ in まちかね祭" data-start-date = "2026-11-01" data-end-date = "2026-11-03">
+                        <div class = "sub-event">
+                            <div class = "sub-event-balloon">
+                                <p class = "sub-event-shout">まちかね祭でもやるよ！</p>
+                                <h2 class = "sub-event-title">ワニ博士！「空気」について教えて！</h2>
+                                <dl class = "spec-list">
+                                    <div>
+                                        <dt>DATE</dt>
+                                        <dd>2026年11月1日〜3日</dd>
+                                    </div>
+                                    <div>
+                                        <dt>PLACE</dt>
+                                        <dd>大阪大学豊中キャンパス 学生会館</dd>
+                                    </div>
+                                </dl>
+                                <a class = "text-link" href = "./info.html#venue-toyonaka">会場へのアクセスを見る →</a>
+                            </div>
+                            <img class = "sub-event-character" src = "./images/index/dr_wani_cap_and_gown.png" alt = "ワニ博士">
                         </div>
-                        <div>
-                            <dt>料金</dt>
-                            <dd>入場無料</dd>
+                    </div>
+                </article>
+                <article class = "book-spread prologue-concept-spread" id = "prologue">
+                    <div class = "spread-page spread-page-left lead-page">
+                        <p class = "page-label"><strong>PROLOGUE</strong></p>
+                        <h2 class = "book-heading">「空気」を図鑑にする</h2>
+                        <ul class = "air-note-list">
+                            <li>
+                                <span><strong>ケース 01</strong></span>
+                                <strong>周りが手を挙げないから、自分も黙る。</strong>
+                            </li>
+                            <li>
+                                <span><strong>ケース 02</strong></span>
+                                <strong>席を譲りたいのに、タイミングを逃す。</strong>
+                            </li>
+                            <li>
+                                <span><strong>ケース 03</strong></span>
+                                <strong>違うと思っていても、その場では言えない。</strong>
+                            </li>
+                        </ul>
+                        <div class = "lead-text">
+                            <p>「本当はこうするべきなのに...!」と思っていながら、<br>できないことってありませんか？</p>
                         </div>
-                    </dl>
-                    <a class = "stamp-link" href = "./info.html#venue-nakanoshima">
-                        <span>INFO</span>
-                        <strong>会場へのアクセスを見る</strong>
+                    </div>
+                    <div class = "spread-page spread-page-right concept-overview" id = "concept">
+                        <p class = "page-label"><strong>CONCEPT</strong></p>
+                        <h2 class = "book-heading">『あなたとつくる空気図鑑』とは</h2>
+                        <p class = "book-text">『あなたとつくる空気図鑑』は、大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援『「空気」を観る体験の創造』の企画の一つとして行われる、集団の中に存在し個人の意思決定に少なからず影響を与える、「空気」の存在を知覚し考えることを目的とした、「空気」を観る展示会です。</p>
+                        <div class = "concept-map" aria-label = "展示体験の流れ">
+                            <p class = "concept-map-label">MAP</p>
+                            <img class = "concept-map-flow" src = "./images/concept/02_experience_flow.png" alt = "空気を観察し、映像やボタンを通じて体験を進める展示の流れ">
+                            <img class = "concept-map-card concept-map-card-message" src = "./images/concept/ChatGPT Image 2026年9月3日 20_09_46 (1).png" alt = "相手によって答え方を変える空気を扱うメッセージ展示">
+                            <img class = "concept-map-card concept-map-card-change" src = "./images/concept/ChatGPT Image 2026年9月3日 20_09_46 (2).png" alt = "変えたいときもあるけど簡単には変えられない空気を扱う展示">
+                            <img class = "concept-map-card concept-map-card-birth" src = "./images/concept/ChatGPT Image 2026年9月3日 20_09_48 (3).png" alt = "空気がうまれる瞬間と変わる瞬間を扱う人形展示">
+                        </div>
+                    </div>
+                </article>
+                <article class = "book-spread concept-detail-spread">
+                    <div class = "spread-page spread-page-left concept-scene concept-why">
+                        <h2 class = "book-subheading">なぜ人は「空気」に影響されるのか</h2>
+                        <blockquote class = "book-quote">
+                            <p>何やわからぬ「空気」に、自らの意思決定を拘束されている。</p>
+                            <cite>（山本, 1983, p.15）</cite>
+                        </blockquote>
+                        <p class = "book-text">ここでいう「空気」とは、誰かがそう命令したわけでもないのに、その場の人びとの表情、沈黙、視線、過去の経験、組織の慣習などから、なぜかそのように行動してしまう、そういったものです。明文化された規則ではないため、はっきり反対したり確認したりしにくく、それでいて「いまはこうするのが自然だ」と感じさせる力を持ちます。</p>
+                        <p class = "book-text">人は、不確かな場面では、自分の判断だけでなく周囲の反応も手がかりに行動します。「場を乱したくない」、「否定されたくない」、「不利益を受けたくない」という感覚が働くと、個人の意見よりも「みんなはどう思っているか」が優先されますことがあります。その結果、誰も明示的に求めているわけではないにもかかわらず、沈黙や遠慮といった読み合いが行われ、空気が意思決定を拘束していきます。</p>
+                    </div>
+                    <div class = "spread-page spread-page-right concept-scene concept-aim">
+                        <h2 class = "book-subheading">この展示会が目指すこと</h2>
+                        <p class = "book-text">この展示会が目指すものは、私たちの行動がときに「空気」によって方向づけられていることを、抽象的な知識としてではなく、より具体化された知識や体験を通して捉え直す契機をつくることです。作品の鑑賞や参加を通じて、普段は見過ごされがちな同調、沈黙、ためらいの働きを観察し、自分の判断がどのような場の条件のもとで形づくられているのかを考えます。</p>
+                        <p class = "book-text">「空気」を知覚することは、必ずしもそれに逆らうことだけを意味しません。状況を見極めたうえで変化を促す、距離を取る、あるいは、あえて従うといった行動を、自覚的に選択できるようになるための土台になります。本展示会は、身近な場面で感じる違和感や葛藤から、社会のあるべき姿を考え、そのために必要な変化に自分自身が関わっていくための行動へと結びつけることを目指します。</p>
+                    </div>
+                </article>
+                <article class = "book-spread about-spread" id = "about">
+                    <div class = "spread-page spread-page-left about-project-page">
+                        <p class = "page-label"><strong>ABOUT US</strong></p>
+                        <h2 class = "book-heading">『「空気」を観る体験の創造』について</h2>
+                        <p class = "book-text">『「空気」を観る体験の創造』は、分野の垣根を超えて集まった大学院生の共創的活動を支援する大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援に採択され、スタートしたプロジェクトです。</p>
+                        <h3 class = "book-subheading">大阪大学超域イノベーション博士課程プログラムとは</h3>
+                        <p class = "book-text">社会における複雑で困難な状況に対して「あるべきすがた」を着想し、新たな知の探求や知と知の融合を構想することにより価値を創り出す取り組みを先導できる高度人材の育成を目標とした、大阪大学独自の博士課程プログラムです。</p>
+                        <a class = "stamp-link" href = "https://www.cbi.osaka-u.ac.jp/" target = "_blank" rel = "noopener noreferrer">
+                            <span>OFFICIAL SITE</span>
+                            <strong>超域イノベーション博士課程プログラム公式サイト</strong>
+                        </a>
+                    </div>
+                    <div class = "spread-page spread-page-right about-members-page">
+                        <p class = "page-label"><strong>MEMBER</strong></p>
+                        <h2 class = "book-heading">制作メンバー</h2>
+                        <ul class = "home-member-list">
+                            <li class = "book-card home-member-card" data-tag = "01">
+                                <img class = "member-photo member-photo-kurashima" src = "./images/member/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3.png" alt = "倉島七海">
+                                <dl>
+                                    <dt>倉島七海</dt>
+                                    <dd>大阪大学大学院人間科学研究科D1<br>展示監督・体験設計</dd>
+                                </dl>
+                                <p class = "major">教育工学・芸術</p>
+                            </li>
+                            <li class = "book-card home-member-card" data-tag = "02">
+                                <img class = "member-photo member-photo-nanba" src = "./images/member/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (2).png" alt = "難波龍之">
+                                <dl>
+                                    <dt>難波龍之</dt>
+                                    <dd>大阪大学大学院薬学研究科D3<br>ものづくり・プロトタイピング</dd>
+                                </dl>
+                                <p class = "major">薬学・ものづくり</p>
+                            </li>
+                            <li class = "book-card home-member-card" data-tag = "03">
+                                <img class = "member-photo member-photo-inui" src = "./images/member/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (1).png" alt = "戌井祐人">
+                                <dl>
+                                    <dt>戌井祐人</dt>
+                                    <dd>大阪大学大学院情報科学研究科D1<br>デジタル開発・データ考察</dd>
+                                </dl>
+                                <p class = "major">情報科学・機械学習</p>
+                            </li>
+                            <li class = "book-card home-member-card" data-tag = "04">
+                                <img class = "member-photo member-photo-miyauchi" src = "./images/member/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (4).png" alt = "宮内優太">
+                                <dl>
+                                    <dt>宮内優太</dt>
+                                    <dd>大阪大学大学院情報科学研究科D1<br>調査・調整・数理モデル</dd>
+                                </dl>
+                                <p class = "major">数理科学・ELSI</p>
+                            </li>
+                            <li class = "book-card home-member-card" data-tag = "05">
+                                <img class = "member-photo member-photo-yamamoto" src = "./images/member/ピンク 黄色 紫 ポップ カラフル 子供向け 工作 アート展 ポスター A3 (3).png" alt = "山本美緒">
+                                <dl>
+                                    <dt>山本美緒</dt>
+                                    <dd>大阪大学大学院人文学研究科M2<br>場内デザイン・観察記録</dd>
+                                </dl>
+                                <p class = "major">外国語・フィールドワーク</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class = "index-contact-link" href = "./info.html#contact">
+                        <span>CONTACT</span>
+                        <strong>お問い合わせはこちらから</strong>
                     </a>
-                </div>
-                <!-- サブの告知。メインの紙面の右に、ワニ博士の吹き出しとして重ねる -->
-                <div class = "sub-event" id = "event-second"
-                     data-event-name = "ワニ博士！「空気」について教えて！ in まちかね祭" data-start-date = "2026-11-01" data-end-date = "2026-11-03">
-                    <div class = "sub-event-balloon">
-                        <p class = "sub-event-shout">まちかね祭でもやるよ！</p>
-                        <h2 class = "sub-event-title">ワニ博士！「空気」について教えて！</h2>
-                        <dl class = "spec-list">
-                            <div>
-                                <dt>日時</dt>
-                                <dd>2026年11月1日〜3日</dd>
-                            </div>
-                            <div>
-                                <dt>会場</dt>
-                                <dd>大阪大学豊中キャンパス 学生会館</dd>
-                            </div>
-                        </dl>
-                        <a class = "text-link" href = "./info.html#venue-toyonaka">会場へのアクセスを見る →</a>
-                    </div>
-                    <img class = "sub-event-character" src = "./images/index/dr_wani_cap_and_gown.png" alt = "ワニ博士">
-                </div>
-            </div>
+                </article>
+            </section>
         </main>
         <footer class = "footer">
-            <p class = "footer-about-us">主催：大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援『「空気」を観る体験の創造』</p>
+            <p class = "footer-about-us">主催：<br>大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援『「空気」を観る体験の創造』<br>共催：<br>大阪大学中之島芸術センター</p>
             <p class = "copyright"><small>Copyright &copy; 2026 あなたとつくる空気図鑑 All rights reserved.</small></p>
         </footer>
     </body>

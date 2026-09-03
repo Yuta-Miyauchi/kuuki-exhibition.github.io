@@ -4,12 +4,15 @@
 
     <head>
         <meta charset = "UTF-8">
-        <title> あなたとつくる空気図鑑-メンバーページ-</title>
-        <meta name = "description" content = "グループ型企画支援『「空気」を観る体験の創造』で開催する展示会「あなたとつくる空気図鑑」告知用HPのメンバーページです。">
+        <title>あなたとつくる空気図鑑-我々について-</title>
+        <meta name = "description" content = "我々についてはトップページ内のセクションに統合されました。">
         <meta name = "viewport" content = "width=device-width">
+        <meta http-equiv = "refresh" content = "0; url=./index.html#about">
+        <script>
+            window.location.replace('./index.html#about');
+        </script>
         <link href = "./css/common.css" rel = "stylesheet">
         <link href = "./css/book.css" rel = "stylesheet">
-        <link href = "./css/member.css" rel = "stylesheet">
         <link rel = "preconnect" href = "https://fonts.googleapis.com">
         <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
         <link href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel = "stylesheet">
@@ -24,103 +27,25 @@
                 <div class = "header-menu">
                     <nav class = "menu">
                         <ul>
-                            <li><a href = "./concept.html">CONCEPT</a></li>
-                            <li><a href = "./member.html" aria-current = "page">ABOUT US</a></li>
-                            <li><a href = "./info.html">INFO</a></li>
+                            <li><a href = "./index.html#exhibition">展示会</a></li>
+                            <li><a href = "./index.html#prologue">プロローグ</a></li>
+                            <li><a href = "./index.html#concept">コンセプト</a></li>
+                            <li><a href = "./index.html#about">我々について</a></li>
+                            <li><a href = "./info.html">インフォ</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
         <main class = "main">
-            <!-- 時間で移り変わる写真。栞を除いたページ全体の背景として敷く -->
-            <div class = "member-bg" aria-hidden = "true">
-                <div class = "member-bg-slide member-bg-slide-01"></div>
-                <div class = "member-bg-slide member-bg-slide-02"></div>
-                <div class = "member-bg-slide member-bg-slide-03"></div>
-                <div class = "member-bg-slide member-bg-slide-04"></div>
-            </div>
-            <div class = "first-view">
-                <div class = "book-page member-cover">
-                    <p class = "page-label">ABOUT US</p>
-                    <h1 class = "member-cover-title">「空気」を観る体験の創造</h1>
-                </div>
-            </div>
             <div class = "book-page">
-                <h2 class = "book-heading">『「空気」を観る体験の創造』について</h2>
-                <p class = "book-text">分野の垣根を超えて集まった大学院生の共創的活動を支援する大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援に採択されスタートしたプロジェクト</p>
-                <blockquote class = "book-quote">
-                    <p>何やわからぬ「空気」に、自らの意思決定を拘束されている。</p>
-                    <cite>（山本, 1983, p.15）</cite>
-                </blockquote>
-                <p class = "book-text">人の意思決定に大きな影響を与える「空気」を知覚し省察することを促す表現について考える</p>
-            </div>
-            <div class = "book-page">
-                <h2 class = "book-heading">大阪大学超域イノベーション博士課程プログラムとは</h2>
-                <p class = "book-text">社会における複雑で困難な状況に対して”あるべきすがた”を着想し、新たな知の探求や知と知の融合を構想することにより新たな価値を創り出す取り組みを先導できる、すなわち社会システムの変革に至るイノベーションを様々な境域を超えて導いていくことができる高度人材の育成を目標とした、大阪大学が独自に展開する博士課程プログラム</p>
-                <a class = "stamp-link" href = "https://www.cbi.osaka-u.ac.jp/" target = "_blank" rel = "noopener noreferrer">
-                    <span>OFFICIAL SITE</span>
-                    <strong>超域イノベーション博士課程プログラム公式サイト</strong>
-                </a>
-            </div>
-            <div class = "book-page">
-                <p class = "page-label">MEMBERS</p>
-                <h2 class = "book-heading">メンバー</h2>
-                <ul class = "member-list">
-                    <li class = "book-card member-card" data-tag = "01">
-                        <img src = "./images/member/img_member01.png" alt = "kurashima">
-                        <dl>
-                            <dt>倉島七海</dt>
-                            <dd>大阪大学大学院人間科学研究科D1<br>
-                                美術の教員免許（中・高）の取得で培った経験を活かして展示全体を監督する。教育工学の手法や教育心理学の理論を用いて、鑑賞者の興味を高め、気づきや行動の変容につなげる。</dd>
-                        </dl>
-                        <p class = "major">教育工学・芸術</p>
-                    </li>
-                    <li class = "book-card member-card" data-tag = "02">
-                        <img src = "./images/member/img_member02.png" alt = "nanba">
-                        <dl>
-                            <dt>難波龍之</dt>
-                            <dd>大阪大学大学院薬学研究科D3<br>
-                                学内の医療機器開発プログラムで学んでいるデザイン思考やモノづくりの方法を活かし、アイデアの発散・収束や展示のプロトタイピイングを先導することで、本企画の実行能性を高める。</dd>
-                        </dl>
-                        <p class = "major">薬学・ものづくり</p>
-                    </li>
-                    <li class = "book-card member-card" data-tag = "03">
-                        <img src = "./images/member/img_member03.png" alt = "inui">
-                        <dl>
-                            <dt>戌井祐人</dt>
-                            <dd>大阪大学大学院情報科学研究科D1<br>
-                                情報技術を用いて、展示に向けたデジタル開発を担当する。また、機械学習に基づいて、鑑賞者の相互作用による空気の変容をデータの観点から考察する。</dd>
-                        </dl>
-                        <p class = "major">情報科学・機械学習</p>
-                    </li>
-                    <li class = "book-card member-card" data-tag = "04">
-                        <img src = "./images/member/img_member04.png" alt = "miyauchi">
-                        <dl>
-                            <dt>宮内優太</dt>
-                            <dd>大阪大学大学院情報科学研究科D1<br>
-                                動的システム論の観点から、「空気」がどんなモデルを通じて形成されるのか考察する。また、STiPSで学んでいるELSIなどの視点から本企画全体に関する調査・調整を行う。</dd>
-                        </dl>
-                        <p class = "major">数理科学・ELSI</p>
-                    </li>
-                    <li class = "book-card member-card" data-tag = "05">
-                        <img src = "./images/member/img_member05.png" alt = "yamamoto">
-                        <dl>
-                            <dt>山本美緒</dt>
-                            <dd>大阪大学大学院人文学研究科M2<br>
-                                アフリカでのフィールドワークの経験を活かし、行動変容を評価する場内デザインを考案する。また、観察・記録の手法を用い、鑑賞者がどのように空気を感じ行動を変化させるのか考察する。</dd>
-                        </dl>
-                        <p class = "major">外国語・フィールドワーク</p>
-                    </li>
-                </ul>
-                <a class = "stamp-link" href = "./concept.html">
-                    <span>CONCEPT</span>
-                    <strong>展示会のコンセプトを見る</strong>
-                </a>
+                <p class = "page-label">我々について</p>
+                <h1 class = "book-heading">我々についてはトップページに移動しました</h1>
+                <p class = "book-text"><a class = "text-link" href = "./index.html#about">トップページの我々についてを見る</a></p>
             </div>
         </main>
         <footer class = "footer">
-            <p class = "footer-about-us">主催：大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援『「空気」を観る体験の創造』</p>
+            <p class = "footer-about-us">主催：大阪大学超域イノベーション博士課程プログラム2026年度グループ型企画支援『「空気」を観る体験の創造』<br>共催：大阪大学中之島芸術センター</p>
             <p class = "copyright"><small>Copyright &copy; 2026 あなたとつくる空気図鑑 All rights reserved.</small></p>
         </footer>
     </body>

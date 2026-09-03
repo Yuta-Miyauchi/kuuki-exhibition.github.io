@@ -155,8 +155,8 @@
 
 .footer-about-us {
   margin-top: 0;
-  font-size: 10px;
-  line-height: 1.6;
+  font-size: 9.5px;
+  line-height: 1.55;
 }
 
 .copyright {
@@ -228,7 +228,222 @@
 }
 
 /* ==========================================================
-   5. ページ内で使い回す部品
+   5. .book-spread — 開いた本の見開き
+      1ページは表紙と同じ幅・高さの基準にし、見開き全体は2ページ分。
+   ========================================================== */
+
+@media (min-width: 901px) {
+  .main.has-open-book {
+    --book-width: min(760px, calc((100vw - var(--sidebar-width) - 72px) / 2));
+  }
+}
+
+.open-book-sequence {
+  padding: 28px 24px 118px;
+  display: grid;
+  gap: 132px;
+  perspective: 1800px;
+}
+
+.book-spread {
+  width: fit-content;
+  min-height: max(640px, calc(100svh - 28px));
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--book-width) var(--book-width);
+  transform-style: preserve-3d;
+}
+
+/* 綴じ目 */
+.book-spread::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 50%;
+  z-index: 3;
+  width: 34px;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent 46%),
+    linear-gradient(to left, rgba(0, 0, 0, 0.16), transparent 46%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.1), transparent 50%);
+  transform: translateX(-50%);
+}
+
+/* 本全体の落ち影 */
+.book-spread::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: -28px;
+  left: 22px;
+  z-index: -1;
+  height: 34px;
+  background-color: rgba(0, 0, 0, 0.28);
+  filter: blur(22px);
+  transform: scaleX(0.94);
+}
+
+.spread-page {
+  min-height: max(640px, calc(100svh - 28px));
+  padding: 76px 62px 82px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--spread-paper, #fdfcef);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(253, 252, 239, 0.86)),
+    linear-gradient(to right, var(--spread-grid, #f1eac6) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--spread-grid, #f1eac6) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px, 28px 28px;
+  border: 3px solid var(--ink);
+  box-shadow:
+    0 10px 0 var(--shade),
+    0 30px 46px rgba(0, 0, 0, 0.18);
+}
+
+.spread-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.spread-page-left {
+  border-right-width: 1px;
+  border-radius: 10px 2px 2px 10px;
+  transform-origin: right center;
+  transform: rotateY(2deg);
+}
+
+.spread-page-right {
+  border-left-width: 1px;
+  border-radius: 2px 10px 10px 2px;
+  transform-origin: left center;
+  transform: rotateY(-2deg);
+}
+
+.spread-page-left::after,
+.spread-page-right::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  z-index: 0;
+  width: 10px;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.14) 0,
+    rgba(0, 0, 0, 0.14) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+.spread-page-left::after {
+  left: 12px;
+  border-left: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+.spread-page-right::after {
+  right: 12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 1100px) {
+  .book-spread {
+    width: fit-content;
+  }
+
+  .spread-page {
+    padding: 54px 38px 62px;
+  }
+}
+
+@media (max-width: 900px) {
+  .open-book-sequence {
+    padding-top: 72px;
+    gap: 88px;
+  }
+
+  .book-spread {
+    width: var(--book-width);
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .book-spread::before {
+    top: 50%;
+    right: 18px;
+    bottom: auto;
+    left: 18px;
+    width: auto;
+    height: 22px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.18), transparent);
+    transform: translateY(-50%);
+  }
+
+  .spread-page {
+    min-height: auto;
+    padding: 44px 28px 54px;
+    transform: none;
+  }
+
+  .spread-page-left {
+    border-right-width: 3px;
+    border-bottom-width: 1px;
+    border-radius: 10px 10px 2px 2px;
+  }
+
+  .spread-page-right {
+    border-top-width: 1px;
+    border-left-width: 3px;
+    border-radius: 2px 2px 10px 10px;
+  }
+
+  .spread-page-left::after,
+  .spread-page-right::after {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .open-book-sequence {
+    padding: 58px 10px 76px;
+    gap: 62px;
+  }
+
+  .book-spread {
+    width: calc(100% - 20px);
+  }
+
+  .spread-page {
+    padding: 46px 24px 52px 32px;
+    box-shadow:
+      8px 8px 0 var(--shade),
+      18px 24px 34px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@media (max-width: 520px) {
+  .open-book-sequence {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .book-spread {
+    width: calc(100% - 10px);
+  }
+
+  .spread-page {
+    padding: 42px 18px 48px 24px;
+  }
+}
+
+/* ==========================================================
+   6. ページ内で使い回す部品
    ========================================================== */
 
 /* 黒帯の小ラベル（ENTRY 02 / CONCEPT など） */
@@ -292,6 +507,7 @@
 .text-link {
   text-decoration: underline;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
   transition: opacity 200ms ease;
 }
 
@@ -329,6 +545,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 18px;
   color: var(--paper);
   background-color: var(--ink);
   border: 2px solid var(--ink);
@@ -344,6 +561,7 @@
 }
 
 .stamp-link strong {
+  min-width: 0;
   line-height: 1.5;
 }
 
@@ -390,7 +608,18 @@
   font-size: 20px;
   line-height: 1.6;
   font-weight: bold;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+}
+
+.date-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.date-time {
+  display: inline-block;
+  margin-left: 0.35em;
+  white-space: nowrap;
 }
 
 /* ==========================================================
